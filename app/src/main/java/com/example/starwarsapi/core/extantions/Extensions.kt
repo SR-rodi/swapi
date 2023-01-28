@@ -6,12 +6,16 @@ import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import com.example.starwarsapi.app.App
 import com.example.starwarsapi.di.AppComponent
+import com.example.starwarsapi.feature.data.database.FavoritePeopleEntity
 import com.example.starwarsapi.feature.data.model.PeopleDto
 import com.example.starwarsapi.feature.domain.model.People
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
 import com.google.android.material.textfield.TextInputEditText
 
 fun List<PeopleDto>.toListPeople() = this.map { peopleDto -> peopleDto.toPeople() }
+
+fun List<FavoritePeopleEntity>.toListFavorite() =
+    this.map { peopleEntity -> peopleEntity.toFavoritePeople() }
 
 fun List<People>.toListPeopleUi() = this.map { people -> people.toPeopleUi() }
 

@@ -17,4 +17,6 @@ class People(
     val mass: String,
     val name: String,
     val height: String,
-)
+){
+    var isFavorite: Boolean = false
+}

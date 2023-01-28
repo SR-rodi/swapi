@@ -5,4 +5,5 @@ class PeopleUi(
     val url: String,
     val gender: String,
     val name: String,
+    val favorite: Boolean = false
 )
