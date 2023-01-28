@@ -1,10 +1,12 @@
-package com.example.starwarsapi.di
+package com.example.starwarsapi.di.binds
 
 import com.example.starwarsapi.feature.data.repositoryimpl.DatabaseRepositoryImpl
 import com.example.starwarsapi.feature.data.repositoryimpl.SearchRepositoryImpl
 import com.example.starwarsapi.feature.domain.repository.DatabaseRepository
 import com.example.starwarsapi.feature.domain.repository.SearchRepository
+import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
+import com.example.starwarsapi.feature.domain.usecase.impl.FavoriteUseCaseImpl
 import com.example.starwarsapi.feature.domain.usecase.impl.SearchUseCaseImpl
 import dagger.Binds
 
@@ -19,4 +21,8 @@ interface AppBinds {
 
     @Binds
     fun bindsSearchUseCase(searchUseCase: SearchUseCaseImpl): SearchUseCase
+
+    @Binds
+    fun bindsFavoriteUseCase(favoriteUseCaseImpl: FavoriteUseCaseImpl): FavoriteUseCase
+
 }

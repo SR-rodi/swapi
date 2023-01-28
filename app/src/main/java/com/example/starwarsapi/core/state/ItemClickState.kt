@@ -1,5 +1,7 @@
 package com.example.starwarsapi.core.state
 
-enum class ItemClickState {
-    FAVORITE,ROOT
+import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+
+enum class ItemClickState(var people: PeopleUi? = null) {
+    FAVORITE, ROOT
 }

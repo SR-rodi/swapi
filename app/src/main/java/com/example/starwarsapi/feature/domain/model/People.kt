@@ -17,6 +17,7 @@ class People(
     val mass: String,
     val name: String,
     val height: String,
-){
+    var dataBaseId: Int? = null,
+) {
     var isFavorite: Boolean = false
 }

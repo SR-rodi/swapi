@@ -37,8 +37,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     private fun onClick(clickState: ItemClickState) {
         when (clickState) {
-            ItemClickState.FAVORITE ->
-                Toast.makeText(requireContext(), "favorite", Toast.LENGTH_SHORT).show()
+            ItemClickState.FAVORITE ->viewModel.workDatabase(clickState.people)
             ItemClickState.ROOT ->
                 Toast.makeText(requireContext(), "Root", Toast.LENGTH_SHORT).show()
         }

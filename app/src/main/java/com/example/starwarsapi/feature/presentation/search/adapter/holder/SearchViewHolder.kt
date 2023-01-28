@@ -15,9 +15,10 @@ class SearchViewHolder(private val binding: ItemSearchPeopleBinding) :
             name.text = item.name
             birth.setText(R.string.date_oo_birth, item.birthYear)
             gender.setText(R.string.gender, item.gender)
+            favorite.isSelected = item.favorite
 
-            favorite.setOnClickListener { onClick(ItemClickState.FAVORITE) }
-            root.setOnClickListener { onClick(ItemClickState.ROOT) }
+            favorite.setOnClickListener { onClick(ItemClickState.FAVORITE.apply { people = item }) }
+            root.setOnClickListener { onClick(ItemClickState.ROOT.apply { people = item }) }
         }
     }
 }

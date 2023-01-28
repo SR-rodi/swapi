@@ -1,21 +1,21 @@
 package com.example.starwarsapi.feature.data.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+
+import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoritePeopleDao {
 
-    @Query("SELECT * FROM people_favorite")
-    fun getAllPeople(): List<FavoritePeopleEntity>
+    @Query("SELECT*From people_favorite")
+    @MapInfo(keyColumn = "name")
+    fun getAllPeople(): Flow<Map<String, FavoritePeopleEntity>>
 
     @Insert
-    fun insert(peopleUrl: FavoritePeopleEntity)
+    fun insert(people: FavoritePeopleEntity)
 
     @Delete
-    fun deletePeopleUrl(peopleUrl: FavoritePeopleEntity)
+    fun deletePeople(people: FavoritePeopleEntity)
 
     @Query("DELETE FROM people_favorite")
     fun deleteAll()

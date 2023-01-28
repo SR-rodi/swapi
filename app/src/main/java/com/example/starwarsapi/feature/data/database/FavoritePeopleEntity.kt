@@ -17,5 +17,5 @@ class FavoritePeopleEntity(
     @ColumnInfo(name = "name")
     val name: String
 ){
-    fun toFavoritePeople()= FavoritePeople(birthYear, gender, name)
+    fun toFavoritePeople()= FavoritePeople(id,birthYear, gender, name)
 }
