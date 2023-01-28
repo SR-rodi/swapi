@@ -1,13 +1,11 @@
 package com.example.starwarsapi.feature.domain.model
 
-import com.google.gson.annotations.SerializedName
-
 class People(
     val birthYear: String,
     val eyeColor: String,
     val hairColor: String,
     val homeWorld: String,
-    val skin_color: String,
+    val skinColor: String,
     val species: List<String>,
     val starships: List<String>,
     val url: String,
