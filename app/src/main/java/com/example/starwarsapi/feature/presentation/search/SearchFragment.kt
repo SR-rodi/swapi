@@ -25,9 +25,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.editSearch.setTextChangeListener { query -> viewModel.startSearch(query) }
+        binding.editSearch.setTextChangeListener { query -> viewModel.setQuery(query) }
 
-        dataObserve(viewModel.data) { peoples -> setAdapter(peoples) }
+        dataObserve(viewModel.peoples) { peoples -> setAdapter(peoples) }
 
     }
 

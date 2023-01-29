@@ -1,5 +1,5 @@
 package com.example.starwarsapi.core.state
 
 enum class LoadState {
-    SUCCESS, ERROR, LOADING
+    SUCCESS, ERROR, LOADING, EMPTY
 }

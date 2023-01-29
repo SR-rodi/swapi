@@ -3,13 +3,11 @@ package com.example.starwarsapi.feature.presentation.search
 import androidx.lifecycle.viewModelScope
 import com.example.starwarsapi.core.base.BaseViewModel
 import com.example.starwarsapi.core.extantions.toListPeopleUi
-import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
@@ -17,18 +15,15 @@ class SearchViewModel @Inject constructor(
     private val favoriteUseCase: FavoriteUseCase,
 ) : BaseViewModel<PeopleUi>() {
 
-    private var job: Job = Job()
+    private val query = MutableStateFlow("")
 
-    fun startSearch(name: String) {
-        job.cancel()
-        job = viewModelScope.launch(Dispatchers.IO + handler) {
-            delay(500)
-            _loadState.value = LoadState.LOADING
-            searchUseCase.getPeopleByName(name).onEach {
-                _data.value = it.toListPeopleUi()
-                _loadState.value = LoadState.SUCCESS
-            }.launchIn(viewModelScope + Dispatchers.IO + handler)
-        }
+    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
+    val peoples = query.debounce(500)
+        .flatMapLatest { name -> getPeopleByName(name) }
+        .stateIn(viewModelScope + Dispatchers.IO + handler, SharingStarted.Lazily, emptyList())
+
+    fun setQuery(text: String) {
+        query.value = text
     }
 
     fun workDatabase(item: PeopleUi?) =
@@ -36,4 +31,9 @@ class SearchViewModel @Inject constructor(
             if (item != null)
                 favoriteUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
         }
+
+    private suspend fun getPeopleByName(name: String) = getLoadState {
+        searchUseCase.getPeopleByName(name).map { people -> people.toListPeopleUi() }
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.starwarsapi.core.extantions
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import com.example.starwarsapi.app.App
@@ -17,10 +18,13 @@ fun List<PeopleDto>.toListPeople() = this.map { peopleDto -> peopleDto.toPeople(
 
 fun List<People>.toListPeopleUi() = this.map { people -> people.toPeopleUi() }
 
-fun People.toPeopleUi() = PeopleUi(birthYear, url, gender, name, isFavorite,dataBaseId)
+fun People.toPeopleUi() = PeopleUi(birthYear, url, gender, name, isFavorite, dataBaseId)
 
 fun FavoritePeople.toEntity() = FavoritePeopleEntity(id, birthYear, gender, name)
 
+fun <T> Logi(log: T) {
+    Log.e("Kart", "$log")
+}
 
 @SuppressLint("SetTextI18n")
 fun TextView.setText(rId: Int, text: String) {
