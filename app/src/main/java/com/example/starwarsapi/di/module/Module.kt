@@ -7,6 +7,7 @@ import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import javax.inject.Singleton
 
 @Module(
     includes = [
@@ -19,12 +20,14 @@ import retrofit2.create
 class Module {
 
     @Provides
+    @Singleton
     fun providerRetrofit(): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     @Provides
+    @Singleton
     fun provideApi(retrofit: Retrofit) = retrofit.create<StarWarsApi>()
 
     companion object {

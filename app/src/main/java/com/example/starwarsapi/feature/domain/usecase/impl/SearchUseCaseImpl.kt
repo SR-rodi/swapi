@@ -1,6 +1,5 @@
 package com.example.starwarsapi.feature.domain.usecase.impl
 
-import android.util.Log
 import com.example.starwarsapi.feature.domain.model.People
 import com.example.starwarsapi.feature.domain.repository.DatabaseRepository
 import com.example.starwarsapi.feature.domain.repository.SearchRepository
@@ -17,11 +16,10 @@ class SearchUseCaseImpl @Inject constructor(
         val response = searchRepository.getPeopleByName(name)
         return databaseRepository.getFavoritePeople().map { favorite ->
             response.map { people ->
-                Log.e("Kart","Start")
-                 if (favorite[people.name]?.name == people.name) {
-                     people.dataBaseId = favorite[people.name]?.id
-                     people.isFavorite = true
-                 }
+                people.isFavorite = if (favorite[people.name]?.name == people.name) {
+                    people.dataBaseId = favorite[people.name]?.id
+                    true
+                } else false
                 people
             }
         }

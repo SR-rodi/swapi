@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.example.starwarsapi.feature.domain.model.FavoritePeople
 
 @Entity(tableName = "people_favorite")
-class FavoritePeopleEntity(
+data class FavoritePeopleEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int? = null,

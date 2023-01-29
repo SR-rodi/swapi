@@ -2,8 +2,8 @@ package com.example.starwarsapi.feature.presentation.search
 
 import androidx.lifecycle.viewModelScope
 import com.example.starwarsapi.core.base.BaseViewModel
-import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.core.extantions.toListPeopleUi
+import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
@@ -36,5 +36,4 @@ class SearchViewModel @Inject constructor(
             if (item != null)
                 favoriteUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
         }
-
 }

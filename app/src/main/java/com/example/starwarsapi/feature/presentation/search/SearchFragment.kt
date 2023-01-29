@@ -1,6 +1,7 @@
 package com.example.starwarsapi.feature.presentation.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -37,7 +38,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     private fun onClick(clickState: ItemClickState) {
         when (clickState) {
-            ItemClickState.FAVORITE ->viewModel.workDatabase(clickState.people)
+            ItemClickState.FAVORITE -> viewModel.workDatabase(clickState.people)
             ItemClickState.ROOT ->
                 Toast.makeText(requireContext(), "Root", Toast.LENGTH_SHORT).show()
         }

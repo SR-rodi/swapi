@@ -1,6 +1,5 @@
 package com.example.starwarsapi.feature.data.repositoryimpl
 
-import android.util.Log
 import com.example.starwarsapi.core.extantions.toEntity
 import com.example.starwarsapi.feature.data.database.FavoritePeopleDao
 import com.example.starwarsapi.feature.domain.model.FavoritePeople
@@ -21,10 +20,8 @@ class DatabaseRepositoryImpl @Inject constructor(
     override suspend fun setLike(favoritePeople: FavoritePeople) =
         dao.insert(favoritePeople.toEntity())
 
-    override suspend fun deleteLike(favoritePeople: FavoritePeople) {
-        Log.e("Kart", favoritePeople.toEntity().id.toString())
+    override suspend fun deleteLike(favoritePeople: FavoritePeople) =
         dao.deletePeople(favoritePeople.toEntity())
-    }
 
     override suspend fun deleteAll() = dao.deleteAll()
 
