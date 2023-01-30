@@ -1,7 +1,10 @@
 package com.example.starwarsapi.di.component
 
 import android.content.Context
+import androidx.fragment.app.Fragment
+import com.example.starwarsapi.core.base.BaseFragment
 import com.example.starwarsapi.di.module.Module
+import com.example.starwarsapi.feature.presentation.search.SearchFragment
 import com.example.starwarsapi.feature.presentation.viewfactory.ViewModelFactory
 import dagger.BindsInstance
 import dagger.Component

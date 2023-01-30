@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.example.starwarsapi.feature.presentation.search.SearchFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_home_to_detailsPeopleFragment"
+            app:destination="@id/detailsPeopleFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,13 @@
         android:name="com.example.starwarsapi.feature.presentation.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/detailsPeopleFragment"
+        android:name="com.example.starwarsapi.feature.presentation.details.DetailsPeopleFragment"
+        android:label="fragment_details_people"
+        tools:layout="@layout/fragment_details_people" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

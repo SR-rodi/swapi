@@ -22,7 +22,7 @@ fun People.toPeopleUi() = PeopleUi(birthYear, url, gender, name, isFavorite, dat
 
 fun FavoritePeople.toEntity() = FavoritePeopleEntity(id, birthYear, gender, name)
 
-fun <T> Logi(log: T) {
+fun <T> Log(log: T) {
     Log.e("Kart", "$log")
 }
 

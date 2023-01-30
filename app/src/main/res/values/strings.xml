@@ -7,4 +7,6 @@
     <string name="search_hint">Введите имя персонажа</string>
     <string name="date_oo_birth">Дата рождения:</string>
     <string name="gender">Пол:</string>
+    <string name="bad_request">Повашему запроссу ничего не найденно</string>
+    <string name="error">Проверьте состояние сети, и повторите запрос</string>
 </resources>

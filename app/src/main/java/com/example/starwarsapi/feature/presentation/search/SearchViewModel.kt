@@ -2,7 +2,9 @@ package com.example.starwarsapi.feature.presentation.search
 
 import androidx.lifecycle.viewModelScope
 import com.example.starwarsapi.core.base.BaseViewModel
+import com.example.starwarsapi.core.extantions.Log
 import com.example.starwarsapi.core.extantions.toListPeopleUi
+import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
@@ -15,12 +17,12 @@ class SearchViewModel @Inject constructor(
     private val favoriteUseCase: FavoriteUseCase,
 ) : BaseViewModel<PeopleUi>() {
 
-    private val query = MutableStateFlow("")
+    private val query = MutableStateFlow(SPACE)
 
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-    val peoples = query.debounce(500)
+    var peoples = query.debounce(500)
         .flatMapLatest { name -> getPeopleByName(name) }
-        .stateIn(viewModelScope + Dispatchers.IO + handler, SharingStarted.Lazily, emptyList())
+        .stateIn(viewModelScope + Dispatchers.IO, SharingStarted.Lazily, emptyList())
 
     fun setQuery(text: String) {
         query.value = text
@@ -33,7 +35,19 @@ class SearchViewModel @Inject constructor(
         }
 
     private suspend fun getPeopleByName(name: String) = getLoadState {
-        searchUseCase.getPeopleByName(name).map { people -> people.toListPeopleUi() }
+        if (name == SPACE) flowOf(emptyList())
+        else try {
+            searchUseCase.getPeopleByName(name).map { people ->
+                if (people.isEmpty()) _loadState.value = LoadState.EMPTY
+                people.toListPeopleUi()
+            }
+        } catch (e: Exception) {
+            _loadState.value = LoadState.ERROR
+            flowOf(emptyList())
+        }
     }
 
+    companion object {
+        private const val SPACE = ""
+    }
 }
