@@ -2,7 +2,6 @@ package com.example.starwarsapi.feature.presentation.search
 
 import androidx.lifecycle.viewModelScope
 import com.example.starwarsapi.core.base.BaseViewModel
-import com.example.starwarsapi.core.extantions.Log
 import com.example.starwarsapi.core.extantions.toListPeopleUi
 import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
@@ -34,17 +33,12 @@ class SearchViewModel @Inject constructor(
                 favoriteUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
         }
 
-    private suspend fun getPeopleByName(name: String) = getLoadState {
+    private suspend fun getPeopleByName(name: String) = getLoadState(flowOf(emptyList())) {
         if (name == SPACE) flowOf(emptyList())
-        else try {
-            searchUseCase.getPeopleByName(name).map { people ->
+        else searchUseCase.getPeopleByName(name).map { people ->
                 if (people.isEmpty()) _loadState.value = LoadState.EMPTY
                 people.toListPeopleUi()
             }
-        } catch (e: Exception) {
-            _loadState.value = LoadState.ERROR
-            flowOf(emptyList())
-        }
     }
 
     companion object {

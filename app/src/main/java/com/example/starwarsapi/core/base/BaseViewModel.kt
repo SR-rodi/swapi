@@ -20,11 +20,14 @@ abstract class BaseViewModel<I : Any> : ViewModel() {
         _loadState.value = LoadState.ERROR
     }
 
-    protected suspend fun <A> getLoadState(action: suspend () -> A): A {
+    protected suspend fun <A> getLoadState( plug: A,action: suspend () -> A): A {
         _loadState.value = LoadState.LOADING
-        val response = action()
-        if (_loadState.value != LoadState.LOADING)
-            changeLoadState()
+        var response = plug
+        kotlin.runCatching { action() }.fold(
+            onSuccess = { response = it },
+            onFailure = { _loadState.value = LoadState.ERROR }
+        )
+        if (_loadState.value != LoadState.LOADING) changeLoadState()
         else _loadState.value = LoadState.SUCCESS
         return response
     }
