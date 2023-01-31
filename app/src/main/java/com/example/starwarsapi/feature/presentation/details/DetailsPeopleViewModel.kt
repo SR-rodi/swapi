@@ -27,12 +27,10 @@ class DetailsPeopleViewModel @Inject constructor(
         url.value = newUrl
     }
 
-    fun workDataBase(item: DetailsPeople) {
+    fun workDataBase(item: DetailsPeople)=
         viewModelScope.launch (Dispatchers.IO){
             likeUseCase.workDataBase(item.toFavorite(), item.isFavorite)
         }
-
-    }
 
     companion object {
         private val PLUG_DETAILS = DetailsPeople()

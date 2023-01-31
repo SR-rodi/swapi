@@ -23,9 +23,8 @@ class FavoriteViewModel @Inject constructor(
         map.map { it.value.toFavoritePeopleUi() }
     }.stateIn(viewModelScope + Dispatchers.IO, SharingStarted.Lazily, emptyList())
 
-    fun delete(item:PeopleUi){
+    fun delete(item:PeopleUi)=
         viewModelScope.launch(Dispatchers.IO) {
             likeUseCase.workDataBase(item.toFavoritePeople(),true)
         }
-    }
 }

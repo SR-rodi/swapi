@@ -12,6 +12,7 @@ class SearchUseCaseImpl @Inject constructor(
     private val searchRepository: NetworkRepository,
     private val databaseRepository: FavoriteDbRepository,
 ) : SearchUseCase {
+
     override suspend fun getPeopleByName(name: String): Flow<List<People>> {
         val response = searchRepository.getPeopleByName(name)
         return databaseRepository.getFavoritePeople().map { favorite ->

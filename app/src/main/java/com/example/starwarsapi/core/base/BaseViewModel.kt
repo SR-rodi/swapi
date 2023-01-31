@@ -1,7 +1,7 @@
 package com.example.starwarsapi.core.base
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.starwarsapi.core.extantions.Log
 import com.example.starwarsapi.core.state.LoadState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,12 +9,11 @@ import kotlinx.coroutines.flow.asStateFlow
 
 abstract class BaseViewModel : ViewModel() {
 
-
     protected val _loadState = MutableStateFlow(LoadState.SUCCESS)
     val loadState = _loadState.asStateFlow()
 
     protected val handler = CoroutineExceptionHandler { _, error ->
-        Log.e("Kart", "${error}")
+        Log(error)
         _loadState.value = LoadState.ERROR
     }
 

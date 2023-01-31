@@ -7,7 +7,6 @@ import javax.inject.Inject
 class FavoriteUseCaseImpl @Inject constructor(
     private val favoriteDbRepository: FavoriteDbRepository
 ) : FavoriteUseCase {
+
     override fun getFavoritePeople() = favoriteDbRepository.getFavoritePeople()
-
-
 }

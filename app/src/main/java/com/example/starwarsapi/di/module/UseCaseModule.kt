@@ -36,6 +36,4 @@ class UseCaseModule {
     @Singleton
     fun provideFavoriteUseCase(databaseRepository: FavoriteDbRepository):FavoriteUseCaseImpl =
         FavoriteUseCaseImpl(databaseRepository)
-
-
 }
