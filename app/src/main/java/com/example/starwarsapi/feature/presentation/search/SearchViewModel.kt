@@ -14,7 +14,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase,
     private val favoriteUseCase: FavoriteUseCase,
-) : BaseViewModel<PeopleUi>() {
+) : BaseViewModel() {
 
     private val query = MutableStateFlow(SPACE)
 

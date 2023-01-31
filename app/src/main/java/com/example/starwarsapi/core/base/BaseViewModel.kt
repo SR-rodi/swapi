@@ -7,10 +7,8 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-abstract class BaseViewModel<I : Any> : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    protected val _data = MutableStateFlow(emptyList<I>())
-    val data = _data.asStateFlow()
 
     protected val _loadState = MutableStateFlow(LoadState.SUCCESS)
     val loadState = _loadState.asStateFlow()

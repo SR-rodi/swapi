@@ -1,7 +1,10 @@
 package com.example.starwarsapi.di.module
 
-import com.example.starwarsapi.feature.domain.repository.DatabaseRepository
-import com.example.starwarsapi.feature.domain.repository.SearchRepository
+import com.example.starwarsapi.feature.domain.repository.database.DetailsDbDbRepository
+import com.example.starwarsapi.feature.domain.repository.database.FavoriteDbDbRepository
+import com.example.starwarsapi.feature.domain.repository.network.NetworkRepository
+import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
+import com.example.starwarsapi.feature.domain.usecase.impl.DetailsUseCaseImpl
 import com.example.starwarsapi.feature.domain.usecase.impl.FavoriteUseCaseImpl
 import com.example.starwarsapi.feature.domain.usecase.impl.SearchUseCaseImpl
 import dagger.Provides
@@ -13,13 +16,20 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun provideSearchUseCase(
-        searchRepository: SearchRepository,
-        databaseRepository: DatabaseRepository,
-    ) = SearchUseCaseImpl(searchRepository, databaseRepository)
+        networkRepository: NetworkRepository,
+        databaseRepository: FavoriteDbDbRepository,
+    ): SearchUseCaseImpl = SearchUseCaseImpl(networkRepository, databaseRepository)
 
     @Provides
     @Singleton
-    fun provideFavoriteUseCase(databaseRepository: DatabaseRepository) =
+    fun provideDetailsUseCase(
+        networkRepository: NetworkRepository,
+        databaseRepository: DetailsDbDbRepository,
+    ): DetailsUseCaseImpl = DetailsUseCaseImpl(networkRepository, databaseRepository)
+
+    @Provides
+    @Singleton
+    fun provideFavoriteUseCase(databaseRepository: FavoriteDbDbRepository):FavoriteUseCaseImpl =
         FavoriteUseCaseImpl(databaseRepository)
 
 }

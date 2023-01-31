@@ -1,16 +1,16 @@
 package com.example.starwarsapi.feature.domain.usecase.impl
 
 import com.example.starwarsapi.feature.domain.model.People
-import com.example.starwarsapi.feature.domain.repository.DatabaseRepository
-import com.example.starwarsapi.feature.domain.repository.SearchRepository
+import com.example.starwarsapi.feature.domain.repository.database.FavoriteDbDbRepository
+import com.example.starwarsapi.feature.domain.repository.network.NetworkRepository
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SearchUseCaseImpl @Inject constructor(
-    private val searchRepository: SearchRepository,
-    private val databaseRepository: DatabaseRepository,
+    private val searchRepository: NetworkRepository,
+    private val databaseRepository: FavoriteDbDbRepository,
 ) : SearchUseCase {
     override suspend fun getPeopleByName(name: String): Flow<List<People>> {
         val response = searchRepository.getPeopleByName(name)

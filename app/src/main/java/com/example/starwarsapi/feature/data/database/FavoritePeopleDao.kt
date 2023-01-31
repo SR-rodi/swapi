@@ -11,13 +11,13 @@ interface FavoritePeopleDao {
     @MapInfo(keyColumn = "name")
     fun getAllPeople(): Flow<Map<String, FavoritePeopleEntity>>
 
+    @Query("SELECT *FROM people_favorite WHERE name=:name")
+    fun getPeopleByName(name: String): Flow<FavoritePeopleEntity?>
+
     @Insert
     fun insert(people: FavoritePeopleEntity)
 
     @Delete
     fun deletePeople(people: FavoritePeopleEntity)
-
-    @Query("DELETE FROM people_favorite")
-    fun deleteAll()
 
 }

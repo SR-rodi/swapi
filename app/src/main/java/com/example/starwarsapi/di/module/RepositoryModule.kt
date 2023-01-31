@@ -2,8 +2,9 @@ package com.example.starwarsapi.di.module
 
 import com.example.starwarsapi.feature.data.api.StarWarsApi
 import com.example.starwarsapi.feature.data.database.FavoritePeopleDao
-import com.example.starwarsapi.feature.data.repositoryimpl.DatabaseRepositoryImpl
-import com.example.starwarsapi.feature.data.repositoryimpl.SearchRepositoryImpl
+import com.example.starwarsapi.feature.data.repositoryimpl.DetailsRepositoryImpl
+import com.example.starwarsapi.feature.data.repositoryimpl.FavoriteDbRepositoryImpl
+import com.example.starwarsapi.feature.data.repositoryimpl.NetworkRepositoryImpl
 import dagger.Provides
 import javax.inject.Singleton
 
@@ -12,10 +13,15 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideSearchRepository(searApi: StarWarsApi) = SearchRepositoryImpl(searApi)
+    fun provideNetworkRepository(searApi: StarWarsApi) = NetworkRepositoryImpl(searApi)
 
     @Provides
     @Singleton
-    fun provideDataBaseRepository(dao: FavoritePeopleDao) = DatabaseRepositoryImpl(dao)
+    fun provideFavoriteRepository(dao: FavoritePeopleDao) = FavoriteDbRepositoryImpl(dao)
+
+
+    @Provides
+    @Singleton
+    fun provideDetailsRepository(dao: FavoritePeopleDao) = DetailsRepositoryImpl(dao)
 
 }

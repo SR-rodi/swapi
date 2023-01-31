@@ -1,5 +1,7 @@
 package com.example.starwarsapi.feature.domain.model
 
+import com.example.starwarsapi.feature.presentation.details.model.DetailsPeople
+
 class People(
     val birthYear: String,
     val eyeColor: String,
@@ -20,4 +22,6 @@ class People(
     var dataBaseId: Int? = null,
 ) {
     var isFavorite: Boolean = false
+
+    fun toDetails() = DetailsPeople(birthYear, name, films, gender, mass, homeWorld)
 }

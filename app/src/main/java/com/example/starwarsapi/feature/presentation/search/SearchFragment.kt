@@ -19,7 +19,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun initBinding(inflater: LayoutInflater) = FragmentSearchBinding.inflate(inflater)
 
-    private val viewModel by viewModels<SearchViewModel> { requireContext().appComponent().viewModelFactory }
+    private val viewModel by lazy { initViewModel<SearchViewModel>() }
 
     private val adapter by lazy { SearchAdapter { onClick(it) } }
 
