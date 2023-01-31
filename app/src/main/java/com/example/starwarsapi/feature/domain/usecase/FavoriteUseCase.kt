@@ -1,8 +1,9 @@
 package com.example.starwarsapi.feature.domain.usecase
 
 import com.example.starwarsapi.feature.domain.model.FavoritePeople
+import kotlinx.coroutines.flow.Flow
 
 interface FavoriteUseCase {
 
-    suspend fun workDataBase(favoritePeople: FavoritePeople, favorite: Boolean)
+    fun getFavoritePeople(): Flow<Map<String, FavoritePeople>>
 }

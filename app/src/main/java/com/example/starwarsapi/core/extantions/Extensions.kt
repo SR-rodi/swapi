@@ -20,7 +20,7 @@ fun List<People>.toListPeopleUi() = this.map { people -> people.toPeopleUi() }
 
 fun People.toPeopleUi() = PeopleUi(birthYear, url, gender, name, isFavorite, dataBaseId)
 
-fun FavoritePeople.toEntity() = FavoritePeopleEntity(id, birthYear, gender, name)
+fun FavoritePeople.toEntity() = FavoritePeopleEntity(id, birthYear, gender, name,url)
 
 fun <T> Log(log: T) {
     Log.e("Kart", "$log")

@@ -3,8 +3,10 @@ package com.example.starwarsapi.feature.presentation.details
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import com.example.starwarsapi.core.base.BaseFragment
+import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.databinding.FragmentDetailsPeopleBinding
 import com.example.starwarsapi.feature.presentation.details.model.DetailsPeople
 
@@ -25,6 +27,12 @@ class DetailsPeopleFragment : BaseFragment<FragmentDetailsPeopleBinding>() {
             bind(man)
             favoriteClick(man)
         }
+
+        dataObserve(viewModel.loadState){ state->
+            binding.error.isVisible = state == LoadState.ERROR
+            binding.loading.isVisible = state == LoadState.LOADING
+        }
+
     }
 
     private fun favoriteClick(info: DetailsPeople) =
@@ -38,7 +46,6 @@ class DetailsPeopleFragment : BaseFragment<FragmentDetailsPeopleBinding>() {
             birthDay.text = man.birthYear
             gender.text = man.gender
             mass.text = man.mass
-            home.text = man.homeWorld
             favorite.isSelected = man.isFavorite
         }
 

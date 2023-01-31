@@ -8,7 +8,7 @@ import com.example.starwarsapi.databinding.ItemSearchPeopleBinding
 import com.example.starwarsapi.feature.presentation.search.adapter.holder.SearchViewHolder
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
 
-class SearchAdapter (
+class PeopleAdapter (
     private val onClick:(state:ItemClickState)->Unit
         ): BaseAdapter<PeopleUi, SearchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = SearchViewHolder(

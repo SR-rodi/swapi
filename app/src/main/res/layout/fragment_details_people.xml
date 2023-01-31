@@ -6,6 +6,26 @@
     android:orientation="vertical"
     tools:context=".feature.presentation.details.DetailsPeopleFragment">
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="0.2"
+        android:scaleY="0.2"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/error"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/name"
         style="@style/TextViewTitle"
@@ -34,11 +54,6 @@
             <TextView
                 android:gravity="end"
                 style="@style/TextViewSubTitle"
-                android:text="@string/home_world" />
-
-            <TextView
-                android:gravity="end"
-                style="@style/TextViewSubTitle"
                 android:text="@string/mass" />
 
         </LinearLayout>
@@ -59,10 +74,6 @@
                 style="@style/TextViewSubTitle"
                 tools:text="@string/gender" />
 
-            <TextView
-                android:id="@+id/home"
-                style="@style/TextViewSubTitle"
-                tools:text="@string/home_world" />
 
             <TextView
                 android:id="@+id/mass"

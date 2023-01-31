@@ -10,5 +10,5 @@ class PeopleUi(
     val favorite: Boolean = false,
     private val databaseId: Int? = null,
 ) {
-    fun toFavoritePeople() = FavoritePeople(databaseId, birthYear, gender, name)
+    fun toFavoritePeople() = FavoritePeople(databaseId, birthYear, gender, name,url)
 }

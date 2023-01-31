@@ -15,7 +15,9 @@ data class FavoritePeopleEntity(
     @ColumnInfo(name = "gender")
     val gender: String,
     @ColumnInfo(name = "name")
-    val name: String
-){
-    fun toFavoritePeople()= FavoritePeople(id,birthYear, gender, name)
+    val name: String,
+    @ColumnInfo(name = "url")
+    val url: String
+) {
+    fun toFavoritePeople() = FavoritePeople(id, birthYear, gender, name, url)
 }

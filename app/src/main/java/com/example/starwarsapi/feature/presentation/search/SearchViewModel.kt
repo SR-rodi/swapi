@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.starwarsapi.core.base.BaseViewModel
 import com.example.starwarsapi.core.extantions.toListPeopleUi
 import com.example.starwarsapi.core.state.LoadState
-import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
+import com.example.starwarsapi.feature.domain.usecase.LikeUseCase
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
 import kotlinx.coroutines.*
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase,
-    private val favoriteUseCase: FavoriteUseCase,
+    private val likeUseCase: LikeUseCase,
 ) : BaseViewModel() {
 
     private val query = MutableStateFlow(SPACE)
@@ -30,7 +30,7 @@ class SearchViewModel @Inject constructor(
     fun workDatabase(item: PeopleUi?) =
         viewModelScope.launch(Dispatchers.IO + handler) {
             if (item != null)
-                favoriteUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
+                likeUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
         }
 
     private suspend fun getPeopleByName(name: String) = getLoadState(flowOf(emptyList())) {

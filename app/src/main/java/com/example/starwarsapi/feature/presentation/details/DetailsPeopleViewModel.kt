@@ -3,7 +3,7 @@ package com.example.starwarsapi.feature.presentation.details
 import androidx.lifecycle.viewModelScope
 import com.example.starwarsapi.core.base.BaseViewModel
 import com.example.starwarsapi.feature.domain.usecase.DetailsUseCase
-import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
+import com.example.starwarsapi.feature.domain.usecase.LikeUseCase
 import com.example.starwarsapi.feature.presentation.details.model.DetailsPeople
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -11,13 +11,13 @@ import javax.inject.Inject
 
 class DetailsPeopleViewModel @Inject constructor(
     private val detailsUseCase: DetailsUseCase,
-    private val favoriteUseCase: FavoriteUseCase
+    private val likeUseCase: LikeUseCase
 ) : BaseViewModel() {
 
     private val url = MutableStateFlow("")
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    var people = url.flatMapLatest { url ->
+    val people = url.flatMapLatest { url ->
         getLoadState(flowOf(PLUG_DETAILS)) {
             detailsUseCase.getDetailsInfo(url).map { people -> people.toDetails() }
         }
@@ -29,7 +29,7 @@ class DetailsPeopleViewModel @Inject constructor(
 
     fun workDataBase(item: DetailsPeople) {
         viewModelScope.launch (Dispatchers.IO){
-            favoriteUseCase.workDataBase(item.toFavorite(), item.isFavorite)
+            likeUseCase.workDataBase(item.toFavorite(), item.isFavorite)
         }
 
     }

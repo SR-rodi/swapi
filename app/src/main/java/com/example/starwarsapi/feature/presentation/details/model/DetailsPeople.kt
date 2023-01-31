@@ -10,7 +10,8 @@ class DetailsPeople(
     val mass: String = "",
     val homeWorld: String = "",
     var isFavorite: Boolean = false,
-    val id: Int? = null
+    val id: Int? = null,
+    val url: String = ""
 ) {
-    fun toFavorite() = FavoritePeople(id, birthYear, gender, name)
+    fun toFavorite() = FavoritePeople(id, birthYear, gender, name, url)
 }

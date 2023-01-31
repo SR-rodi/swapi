@@ -13,8 +13,8 @@ abstract class BaseViewModel : ViewModel() {
     protected val _loadState = MutableStateFlow(LoadState.SUCCESS)
     val loadState = _loadState.asStateFlow()
 
-    protected val handler = CoroutineExceptionHandler { context, T ->
-        Log.e("Kart", "${T}")
+    protected val handler = CoroutineExceptionHandler { _, error ->
+        Log.e("Kart", "${error}")
         _loadState.value = LoadState.ERROR
     }
 
@@ -34,6 +34,5 @@ abstract class BaseViewModel : ViewModel() {
         val state = _loadState.value
         _loadState.value = LoadState.SUCCESS
         _loadState.value = state
-
     }
 }

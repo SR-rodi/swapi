@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.starwarsapi.core.base.BaseFragment
-import com.example.starwarsapi.core.extantions.appComponent
 import com.example.starwarsapi.core.extantions.setTextChangeListener
 import com.example.starwarsapi.core.state.ItemClickState
 import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.databinding.FragmentSearchBinding
-import com.example.starwarsapi.feature.presentation.search.adapter.SearchAdapter
+import com.example.starwarsapi.feature.presentation.search.adapter.PeopleAdapter
 import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
@@ -21,7 +19,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     private val viewModel by lazy { initViewModel<SearchViewModel>() }
 
-    private val adapter by lazy { SearchAdapter { onClick(it) } }
+    private val adapter by lazy { PeopleAdapter { onClick(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
