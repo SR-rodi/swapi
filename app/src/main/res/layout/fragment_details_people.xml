@@ -1,13 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".feature.presentation.details.DetailsPeopleFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/name"
+        style="@style/TextViewTitle"
+        tools:text="Han Solo" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:gravity="end"
+                style="@style/TextViewSubTitle"
+                android:text="@string/date_oo_birth" />
+
+            <TextView
+                android:gravity="end"
+                style="@style/TextViewSubTitle"
+                android:text="@string/gender" />
+
+            <TextView
+                android:gravity="end"
+                style="@style/TextViewSubTitle"
+                android:text="@string/home_world" />
+
+            <TextView
+                android:gravity="end"
+                style="@style/TextViewSubTitle"
+                android:text="@string/mass" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/birth_day"
+                style="@style/TextViewSubTitle"
+                tools:text="@string/date_oo_birth" />
+
+            <TextView
+                android:id="@+id/gender"
+                style="@style/TextViewSubTitle"
+                tools:text="@string/gender" />
+
+            <TextView
+                android:id="@+id/home"
+                style="@style/TextViewSubTitle"
+                tools:text="@string/home_world" />
+
+            <TextView
+                android:id="@+id/mass"
+                style="@style/TextViewSubTitle"
+                tools:text="@string/mass" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/selector_favorite"/>
+
+
+</LinearLayout>

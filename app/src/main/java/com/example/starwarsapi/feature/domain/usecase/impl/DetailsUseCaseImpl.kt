@@ -15,10 +15,10 @@ class DetailsUseCaseImpl @Inject constructor(
 ) : DetailsUseCase {
     override suspend fun getDetailsInfo(url: String): Flow<People> {
         val people = searchRepository.getDetailsPeopleByUrl(url)
-       return databaseRepository.getPeopleByName(people.name).map { favorite ->
+        return databaseRepository.getPeopleByName(people.name).map { favorite ->
             people.isFavorite = favorite != null
+            people.dataBaseId = favorite?.id
             people
         }
-
     }
 }

@@ -23,5 +23,6 @@ class People(
 ) {
     var isFavorite: Boolean = false
 
-    fun toDetails() = DetailsPeople(birthYear, name, films, gender, mass, homeWorld)
+    fun toDetails() =
+        DetailsPeople(birthYear, name, films, gender, mass, homeWorld, isFavorite, dataBaseId)
 }

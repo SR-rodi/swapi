@@ -3,12 +3,10 @@ package com.example.starwarsapi.feature.presentation.details
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.starwarsapi.core.base.BaseFragment
-import com.example.starwarsapi.core.extantions.Log
-import com.example.starwarsapi.core.extantions.appComponent
 import com.example.starwarsapi.databinding.FragmentDetailsPeopleBinding
+import com.example.starwarsapi.feature.presentation.details.model.DetailsPeople
 
 class DetailsPeopleFragment : BaseFragment<FragmentDetailsPeopleBinding>() {
     override fun initBinding(inflater: LayoutInflater) =
@@ -22,8 +20,26 @@ class DetailsPeopleFragment : BaseFragment<FragmentDetailsPeopleBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.setUrl(people.url)
-        dataObserve(viewModel.people) {
+
+        dataObserve(viewModel.people) { man ->
+            bind(man)
+            favoriteClick(man)
+        }
+    }
+
+    private fun favoriteClick(info: DetailsPeople) =
+        binding.favorite.setOnClickListener {
+            viewModel.workDataBase(info)
         }
 
-    }
+    private fun bind(man: DetailsPeople) =
+        binding.apply {
+            name.text = man.name
+            birthDay.text = man.birthYear
+            gender.text = man.gender
+            mass.text = man.mass
+            home.text = man.homeWorld
+            favorite.isSelected = man.isFavorite
+        }
+
 }

@@ -9,4 +9,6 @@
     <string name="gender">Пол:</string>
     <string name="bad_request">Повашему запроссу ничего не найденно</string>
     <string name="error">Проверьте состояние сети, и повторите запрос</string>
+    <string name="mass">Масса:</string>
+    <string name="home_world">Дом:</string>
 </resources>

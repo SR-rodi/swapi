@@ -2,7 +2,7 @@ package com.example.starwarsapi.feature.domain.repository.database
 
 import com.example.starwarsapi.feature.domain.model.FavoritePeople
 
-interface LikeDbRepository{
+interface LikeDbRepository {
 
     suspend fun setLike(favoritePeople: FavoritePeople)
 

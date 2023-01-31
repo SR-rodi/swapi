@@ -19,7 +19,8 @@ class ViewModelFactory @Inject constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when (modelClass) {
             SearchViewModel::class.java -> SearchViewModel(searchUseCase,favoriteUseCase) as T
-            DetailsPeopleViewModel::class.java -> DetailsPeopleViewModel(detailsUseCase) as T
+            DetailsPeopleViewModel::class.java ->
+                DetailsPeopleViewModel(detailsUseCase,favoriteUseCase) as T
             else -> throw IllegalStateException("no ViewModelProvider")
         }
     }
