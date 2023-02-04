@@ -1,15 +1,13 @@
 package com.example.starwarsapi.feature.presentation.details.model
 
-import com.example.starwarsapi.feature.domain.model.FavoritePeople
+import com.example.starwarsapi.feature.presentation.model.PeopleUi
 
 class DetailsPeople(
-    val birthYear: String = "",
-    val name: String = "",
-    val gender: String = "",
+    override val birthYear: String = "",
+    override val name: String = "",
+    override val gender: String = "",
     val mass: String = "",
-    var isFavorite: Boolean = false,
-    val id: Int? = null,
-    val url: String = ""
-) {
-    fun toFavorite() = FavoritePeople(id, birthYear, gender, name, url)
-}
+    override var favorite: Boolean = false,
+    override val databaseId: Int? = null,
+    override val url: String = "",
+) : PeopleUi

@@ -11,14 +11,14 @@ import com.example.starwarsapi.feature.data.database.FavoritePeopleEntity
 import com.example.starwarsapi.feature.data.model.PeopleDto
 import com.example.starwarsapi.feature.domain.model.FavoritePeople
 import com.example.starwarsapi.feature.domain.model.People
-import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+import com.example.starwarsapi.feature.presentation.search.model.PeopleBase
 import com.google.android.material.textfield.TextInputEditText
 
 fun List<PeopleDto>.toListPeople() = this.map { peopleDto -> peopleDto.toPeople() }
 
 fun List<People>.toListPeopleUi() = this.map { people -> people.toPeopleUi() }
 
-fun People.toPeopleUi() = PeopleUi(birthYear, url, gender, name, isFavorite, dataBaseId)
+fun People.toPeopleUi() = PeopleBase(birthYear, url, gender, name, isFavorite, dataBaseId)
 
 fun FavoritePeople.toEntity() = FavoritePeopleEntity(id, birthYear, gender, name,url)
 

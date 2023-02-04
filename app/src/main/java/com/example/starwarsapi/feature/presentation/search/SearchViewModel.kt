@@ -6,7 +6,7 @@ import com.example.starwarsapi.core.extantions.toListPeopleUi
 import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.feature.domain.usecase.LikeUseCase
 import com.example.starwarsapi.feature.domain.usecase.SearchUseCase
-import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+import com.example.starwarsapi.feature.presentation.model.PeopleUi
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -29,16 +29,16 @@ class SearchViewModel @Inject constructor(
 
     fun workDatabase(item: PeopleUi?) =
         viewModelScope.launch(Dispatchers.IO + handler) {
-            if (item != null)
-                likeUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
+            requireNotNull(item)
+            likeUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
         }
 
     private suspend fun getPeopleByName(name: String) = getLoadState(flowOf(emptyList())) {
         if (name == SPACE) flowOf(emptyList())
         else searchUseCase.getPeopleByName(name).map { people ->
-                if (people.isEmpty()) _loadState.value = LoadState.EMPTY
-                people.toListPeopleUi()
-            }
+            if (people.isEmpty()) _loadState.value = LoadState.EMPTY
+            people.toListPeopleUi()
+        }
     }
 
     companion object {

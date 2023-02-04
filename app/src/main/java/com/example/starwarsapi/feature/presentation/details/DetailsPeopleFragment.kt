@@ -46,7 +46,7 @@ class DetailsPeopleFragment : BaseFragment<FragmentDetailsPeopleBinding>() {
             birthDay.text = man.birthYear
             gender.text = man.gender
             mass.text = man.mass
-            favorite.isSelected = man.isFavorite
+            favorite.isSelected = man.favorite
         }
 
 }

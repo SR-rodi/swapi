@@ -8,7 +8,7 @@ import com.example.starwarsapi.core.base.BaseFragment
 import com.example.starwarsapi.core.state.ItemClickState
 import com.example.starwarsapi.databinding.FragmentFavoriteBinding
 import com.example.starwarsapi.feature.presentation.search.adapter.PeopleAdapter
-import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+import com.example.starwarsapi.feature.presentation.model.PeopleUi
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     override fun initBinding(inflater: LayoutInflater) = FragmentFavoriteBinding.inflate(inflater)
@@ -29,8 +29,8 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     private fun onItemClick(state: ItemClickState) {
-        val item = state.people
-        if (item != null) when (state) {
+        val item = requireNotNull(state.people)
+        when (state) {
             ItemClickState.FAVORITE -> viewModel.delete(item)
             ItemClickState.ROOT -> findNavController().navigate(
                 FavoriteFragmentDirections

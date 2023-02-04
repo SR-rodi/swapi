@@ -5,7 +5,7 @@ import com.example.starwarsapi.core.base.BaseViewHolder
 import com.example.starwarsapi.core.extantions.setText
 import com.example.starwarsapi.core.state.ItemClickState
 import com.example.starwarsapi.databinding.ItemSearchPeopleBinding
-import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+import com.example.starwarsapi.feature.presentation.model.PeopleUi
 
 class SearchViewHolder(
     private val binding: ItemSearchPeopleBinding,
@@ -15,15 +15,9 @@ class SearchViewHolder(
     init {
         binding.apply {
             favorite.setOnClickListener {
-                onClick(ItemClickState.FAVORITE.apply {
-                    people = item
-                })
+                onClick(ItemClickState.FAVORITE.apply { people = item })
             }
-            root.setOnClickListener {
-                onClick(ItemClickState.ROOT.apply {
-                    people = item
-                })
-            }
+            root.setOnClickListener { onClick(ItemClickState.ROOT.apply { people = item }) }
         }
     }
 

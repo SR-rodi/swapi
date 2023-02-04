@@ -11,7 +11,7 @@ import com.example.starwarsapi.core.state.ItemClickState
 import com.example.starwarsapi.core.state.LoadState
 import com.example.starwarsapi.databinding.FragmentSearchBinding
 import com.example.starwarsapi.feature.presentation.search.adapter.PeopleAdapter
-import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+import com.example.starwarsapi.feature.presentation.model.PeopleUi
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
@@ -44,9 +44,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
     }
 
     private fun onClick(clickState: ItemClickState) {
+        val item = requireNotNull(clickState.people)
         when (clickState) {
-            ItemClickState.FAVORITE -> viewModel.workDatabase(clickState.people)
-            ItemClickState.ROOT ->findNavController().navigate(SearchFragmentDirections.actionNavigationHomeToDetailsPeopleFragment(clickState.people!!.url))
+            ItemClickState.FAVORITE -> viewModel.workDatabase(item)
+            ItemClickState.ROOT -> findNavController().navigate(
+                SearchFragmentDirections.actionNavigationHomeToDetailsPeopleFragment(item.url)
+            )
         }
     }
 }

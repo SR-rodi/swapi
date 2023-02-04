@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class DetailsPeopleViewModel @Inject constructor(
     private val detailsUseCase: DetailsUseCase,
-    private val likeUseCase: LikeUseCase
+    private val likeUseCase: LikeUseCase,
 ) : BaseViewModel() {
 
     private val url = MutableStateFlow("")
@@ -27,9 +27,9 @@ class DetailsPeopleViewModel @Inject constructor(
         url.value = newUrl
     }
 
-    fun workDataBase(item: DetailsPeople)=
-        viewModelScope.launch (Dispatchers.IO){
-            likeUseCase.workDataBase(item.toFavorite(), item.isFavorite)
+    fun workDataBase(item: DetailsPeople) =
+        viewModelScope.launch(Dispatchers.IO) {
+            likeUseCase.workDataBase(item.toFavoritePeople(), item.favorite)
         }
 
     companion object {

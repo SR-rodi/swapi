@@ -1,6 +1,6 @@
 package com.example.starwarsapi.feature.domain.model
 
-import com.example.starwarsapi.feature.presentation.search.model.PeopleUi
+import com.example.starwarsapi.feature.presentation.search.model.PeopleBase
 
 class FavoritePeople(
     val id: Int?,
@@ -9,5 +9,5 @@ class FavoritePeople(
     val name: String,
     val url: String
 ) {
-    fun toFavoritePeopleUi() = PeopleUi(birthYear, url, gender, name, true, id)
+    fun toFavoritePeopleUi() = PeopleBase(birthYear, url, gender, name, true, id)
 }

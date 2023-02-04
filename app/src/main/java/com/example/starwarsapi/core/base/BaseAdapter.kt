@@ -1,7 +1,6 @@
 package com.example.starwarsapi.core.base
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.starwarsapi.feature.presentation.search.adapter.holder.BaseViewHolder
 
 abstract class BaseAdapter<I : Any, VH : BaseViewHolder<I>> :
     RecyclerView.Adapter<VH>() {
