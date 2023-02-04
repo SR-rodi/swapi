@@ -1,7 +1,7 @@
 package com.example.starwarsapi.feature.presentation.favorite
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.starwarsapi.core.base.BaseViewModel
 import com.example.starwarsapi.feature.domain.usecase.FavoriteUseCase
 import com.example.starwarsapi.feature.domain.usecase.LikeUseCase
 import com.example.starwarsapi.feature.presentation.model.PeopleUi
@@ -15,15 +15,17 @@ import javax.inject.Inject
 
 class FavoriteViewModel @Inject constructor(
     favoriteRepository: FavoriteUseCase,
-    private val likeUseCase: LikeUseCase
-) : ViewModel() {
+    private val likeUseCase: LikeUseCase,
+) : BaseViewModel() {
 
-    val peoples = favoriteRepository.getFavoritePeople().map { map ->
-        map.map { it.value.toFavoritePeopleUi() }
+    val peoples = favoriteRepository.getFavoritePeople().map { flowMapFavorite ->
+        getLoadState(emptyList()) {
+            flowMapFavorite.map { favorite -> favorite.value.toFavoritePeopleUi() }
+        }
     }.stateIn(viewModelScope + Dispatchers.IO, SharingStarted.Lazily, emptyList())
 
-    fun delete(item: PeopleUi)=
+    fun delete(item: PeopleUi) =
         viewModelScope.launch(Dispatchers.IO) {
-            likeUseCase.workDataBase(item.toFavoritePeople(),true)
+            likeUseCase.workDataBase(item.toFavoritePeople(), true)
         }
 }
